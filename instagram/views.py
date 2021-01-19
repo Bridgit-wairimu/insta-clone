@@ -1,17 +1,19 @@
 from django.shortcuts  import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .forms import NewPostForm,EditProfileForm,CommentForm
-from .models import Post,Profile
+from .models import Post,Profile,Likes,Comment
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
     images = Post.objects.all()
-    users = User.objects.exclude(id=request.user.id)
+    current_user = request.user
+    users = Profile.objects.all()
+	
     if request.method == 'POST':
         form = NewPostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -93,29 +95,23 @@ def EditProfile(request):
 	return render(request, 'edit_profile.html', context)
 
 
-@login_required(login_url='login')
-def post_comment(request, id):
-    image = get_object_or_404(Post, pk=id)
-    is_liked = False
-    if image.likes.filter(id=request.user.id).exists():
-        is_liked = True
+@login_required(login_url='/accounts/login/')
+def comment(request):
+    current_user = request.user
     if request.method == 'POST':
-        form = CommentForm(request.POST)
+        form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
-            savecomment = form.save(commit=False)
-            savecomment.post = image
-            savecomment.user = request.user.profile
-            savecomment.save()
-            return HttpResponseRedirect(request.path_info)
+            post = form.save(commit=False)
+            post.Author = current_user
+            post.save()
+        return redirect('welcome')
+
     else:
         form = CommentForm()
-    params = {
-        'image': image,
-        'form': form,
-        'is_liked': is_liked,
-        'total_likes': image.total_likes()
-    }
-    return render(request, 'one_post.html', params)
+    return render(request, 'one_post.html', {"form": form})
 
 
-
+def like(request, pk):
+    post= get_object_or_404(Image, id=request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('welcome.html', args=[str(pk)]))

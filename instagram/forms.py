@@ -11,12 +11,14 @@ class NewPostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
-	body = forms.CharField(widget=forms.Textarea(attrs={'class': 'textarea'}), required=True)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['comment'].widget = forms.TextInput()
+        self.fields['comment'].widget.attrs['placeholder'] = 'Add a comment...'
 
-	class Meta:
-		model = Comment
-		fields = ('body',)
-
+    class Meta:
+        model = Comment
+        fields = ('comment',)
 
 
 
