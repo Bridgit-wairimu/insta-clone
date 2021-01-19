@@ -9,6 +9,8 @@ urlpatterns = [
     url(r'^profile/', views.profile, name='profile'),
     url(r'^NewPost/', views.NewPost, name='newpost'),
     url(r'^EditProfile/', views.EditProfile, name='edit_profile'),
+    url(r'^post/<id>', views.post_comment, name='comment'),
+
 ]
 
 if settings.DEBUG:
