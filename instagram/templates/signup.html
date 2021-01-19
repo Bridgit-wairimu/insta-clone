@@ -14,11 +14,11 @@
 
     <form method="post" action="" role="form">
     {% csrf_token %}
-    <h3 class="title is-3">Create an account</h3>
+    <h3 class="title is-3" style="font-size: large; color: blue;">Create an account</h3>
 
             <div class="field">
               <p class="control has-icons-left">
-              <label class="label is-medium">Username</label>
+              <label class="label is-medium" style="font-size: small; color: black;">Username</label>
                 {{ form.username }}
                 <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
@@ -28,7 +28,7 @@
 
             <div class="field">
               <p class="control has-icons-left">
-              <label class="label is-medium">Email</label>
+              <label class="label is-medium" style="font-size: small; color: black;">Email</label>
                 {{ form.email }}
                 <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
@@ -38,7 +38,7 @@
 
             <div class="field">
               <p class="control has-icons-left">
-              <label class="label is-medium">Password</label>
+              <label class="label is-medium" style="font-size: small; color: black;">Password</label>
                 {{ form.password }}
                 <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
@@ -48,7 +48,7 @@
 
             <div class="field">
               <p class="control has-icons-left">
-              <label class="label is-medium">Confirm password</label>
+              <label class="label is-medium" style="font-size: small; color: black;">Confirm password</label>
                 {{ form.confirm_password }}
                 <span class="icon is-small is-left">
             <i class="fas fa-lock"></i>
