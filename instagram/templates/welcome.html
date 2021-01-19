@@ -6,16 +6,15 @@
 
   
       {% for image in images %}  
-        <div class="card mb-4">
-                <div class="card-title">
+    <div class="card-content">
+    <div class="media">
+      <div class="media-left">
                     <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
                    alt="{{image.user.user.username}}" width="35" height="35">
                 </div> 
             </div>
                 <br>
-                    <div class="card mb-4">
                         <img src="{{image.image.url}}"class="card-img" width="200px" height="150px">
-                    </div>
                 
     <div class="media-right">
       <a href=""><i class="material-icons has-text-danger">favorite</i></a>
