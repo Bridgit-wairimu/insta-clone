@@ -1,6 +1,6 @@
 from django.shortcuts  import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import NewPostForm,EditProfileForm
+from .forms import NewPostForm,EditProfileForm,CommentForm
 from .models import Post,Profile
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.models import User
@@ -82,7 +82,7 @@ def EditProfile(request):
 			profile.url = form.cleaned_data.get('url')
 			profile.profile_info = form.cleaned_data.get('profile_info')
 			profile.save()
-			return redirect('welcome')
+			return redirect('profile')
 	else:
 		form = EditProfileForm()
 
@@ -92,6 +92,30 @@ def EditProfile(request):
 
 	return render(request, 'edit_profile.html', context)
 
+
+@login_required(login_url='login')
+def post_comment(request, id):
+    image = get_object_or_404(Post, pk=id)
+    is_liked = False
+    if image.likes.filter(id=request.user.id).exists():
+        is_liked = True
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            savecomment = form.save(commit=False)
+            savecomment.post = image
+            savecomment.user = request.user.profile
+            savecomment.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        form = CommentForm()
+    params = {
+        'image': image,
+        'form': form,
+        'is_liked': is_liked,
+        'total_likes': image.total_likes()
+    }
+    return render(request, 'one_post.html', params)
 
 
 
