@@ -10,7 +10,6 @@ urlpatterns = [
     url(r'^NewPost/', views.NewPost, name='newpost'),
     url(r'^EditProfile/', views.EditProfile, name='edit_profile'),
     url(r'^comment/', views.comment, name='one_post'),
-    url(r'^like/<int:pk>/', views.like, name='like'),
 ]
 
 if settings.DEBUG:

@@ -111,7 +111,19 @@ def comment(request):
     return render(request, 'one_post.html', {"form": form})
 
 
-def like(request, pk):
-    post= get_object_or_404(Image, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('welcome.html', args=[str(pk)]))
+def like(request):
+    image = get_object_or_404(Post, id=request.POST.get('id'))
+    is_liked = False
+    if image.likes.filter(id=request.user.id).exists():
+        image.likes.remove(request.user)
+        is_liked = False
+    else:
+        image.likes.add(request.user)
+        is_liked = False
+
+    params = {
+        'image': image,
+        'is_liked': is_liked,
+        'total_likes': image.total_likes()
+    }
+    return render(request, 'likepage.html',params)
