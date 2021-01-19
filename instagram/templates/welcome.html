@@ -5,7 +5,8 @@
 {{block.super}}
 
   
-      {% for image in images %}  
+      {% for image in images %} 
+      <body> 
     <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -37,5 +38,6 @@
             </div>
             {% endfor %}
         </div>
+</body>
 {% endblock %}
 
