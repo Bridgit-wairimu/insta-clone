@@ -1,5 +1,6 @@
-{%extends "registration/base.html"%}
+{%extends "base.html"%}
 {% load bootstrap3 %}
+{% load static %}
 {% block content %}
 
   <section class="section">
@@ -69,8 +70,26 @@
       </p>
     </div>
 
-
-      </div>
+                <div class="card mt-2">
+                <div class="card-body mt-3 mb-2 mr-3 ml-3">
+                    <p>Have an account? <a href="/accounts/login">Log in</a></p>
+                </div>
+            </div>
+            <div container>
+                <p class="text-center mt-4">Get the app</p>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5 mb-2">
+                      <img src="../static/css/images/insta2.png" alt="" width="100%" class="download">
+                    </div>
+                    <div class="col-md-5 mb-2">
+                        <img src="../static/css/images/insta1.png" alt="" width="100%" class="download">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+</div>
 </div>
 
 
