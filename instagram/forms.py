@@ -33,3 +33,18 @@ class EditProfileForm(forms.ModelForm):
 	class Meta:
 		model = Profile
 		fields = ('picture', 'first_name', 'last_name', 'location', 'url', 'profile_info')
+
+
+
+
+class SignupForm(forms.ModelForm):
+	username = forms.CharField(widget=forms.TextInput(), max_length=30, required=True,)
+	email = forms.CharField(widget=forms.EmailInput(), max_length=100, required=True,)
+	password = forms.CharField(widget=forms.PasswordInput())
+	confirm_password = forms.CharField(widget=forms.PasswordInput(), required=True, label="Confirm your password.")
+
+	class Meta:
+
+		model = User
+		fields = ('username', 'email', 'password')
+
