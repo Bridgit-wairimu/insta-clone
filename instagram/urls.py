@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^EditProfile/', views.EditProfile, name='edit_profile'),
     url(r'^comment/', views.comment, name='one_post'),
     url(r'^signup/', views.Signup, name='signup'),
+    url(r'^like/', views.like, name='likepage')
 ]
 
 if settings.DEBUG:
