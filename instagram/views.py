@@ -54,7 +54,22 @@ def Signup(request):
 @login_required
 def profile(request):
         
-    return render(request, 'profile.html')
+	user=User.objects.get(pk=prof_id)
+	images = Image.objects.filter(profile = prof_id)
+	title = User.objects.get(pk = prof_id).username
+	profile = Profile.objects.filter(user = prof_id)
+
+	if Follow.objects.filter(user_from=request.user,user_to = user).exists():
+		is_follow = True
+	else:
+		is_follow = False
+
+	followers = Follow.objects.filter(user_to = user).count()
+	following = Follow.objects.filter(user_from = user).count()
+	
+
+	return render(request,'profile.html',{"images":images,"profile":profile,"title":title,"is_follow":is_follow,"followers":followers,"following":following})
+	
 
 
 @login_required
@@ -146,3 +161,27 @@ def like(request):
         'total_likes': image.total_likes()
     }
     return render(request, 'likepage.html',params)
+
+
+
+@login_required(login_url='login')
+def search_profile(request):
+    if 'search_user' in request.GET and request.GET['search_user']:
+        name = request.GET.get("search_user")
+        results = Profile.search_profile(name)
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search.html', params)
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, 'search.html', {'message': message})
+
+
+
+
+
+
