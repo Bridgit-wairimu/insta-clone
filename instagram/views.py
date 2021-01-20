@@ -54,21 +54,7 @@ def Signup(request):
 @login_required
 def profile(request):
         
-	user=User.objects.get(pk=prof_id)
-	images = Image.objects.filter(profile = prof_id)
-	title = User.objects.get(pk = prof_id).username
-	profile = Profile.objects.filter(user = prof_id)
-
-	if Follow.objects.filter(user_from=request.user,user_to = user).exists():
-		is_follow = True
-	else:
-		is_follow = False
-
-	followers = Follow.objects.filter(user_to = user).count()
-	following = Follow.objects.filter(user_from = user).count()
-	
-
-	return render(request,'profile.html',{"images":images,"profile":profile,"title":title,"is_follow":is_follow,"followers":followers,"following":following})
+	return render(request,'profile.html')
 	
 
 
