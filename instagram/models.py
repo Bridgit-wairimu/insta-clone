@@ -6,7 +6,7 @@ from cloudinary.models import CloudinaryField
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_picture = models.ImageField(upload_to='images/', default='default.png')
+    profile_picture = models.ImageField(upload_to='images/', default='default.jpg')
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
     location = models.CharField(max_length=60, blank=True, null=True)
@@ -23,7 +23,7 @@ class Profile(models.Model):
 
     
 class Post(models.Model):
-    image = models.ImageField(upload_to='pictures/', blank=True, null=True)
+    image = models.ImageField(upload_to='pictures/', blank=True, null=True, default='default.jpg')
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
