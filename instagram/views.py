@@ -31,7 +31,7 @@ def welcome(request):
     }
     return render(request, 'welcome.html', params)
 
-
+@login_required(login_url='/accounts/login/')
 def Signup(request):
 	if request.method == 'POST':
 		form = SignupForm(request.POST)
@@ -51,7 +51,7 @@ def Signup(request):
 	return render(request, 'signup.html', context)
 
 
-@login_required
+@login_required(login_url='/accounts/login/')
 def profile(request):
         
 	return render(request,'profile.html')

@@ -1,4 +1,4 @@
-{%extends "base.html"%}
+{%extends "registration/base.html"%} 
 {% load bootstrap3 %}
 {% load static %}
 {% block content %}
@@ -72,7 +72,7 @@
 
                 <div class="card mt-2">
                 <div class="card-body mt-3 mb-2 mr-3 ml-3">
-                    <p>Have an account? <a href="/accounts/login">Log in</a></p>
+                    <p>Have an account? <a href="{% url 'welcome' %}">Log in</a></p>
                 </div>
             </div>
             <div container>
