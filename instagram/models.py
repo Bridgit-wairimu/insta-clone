@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from cloudinary.models import CloudinaryField
 
 
 class Profile(models.Model):
@@ -28,6 +29,7 @@ class Post(models.Model):
     likes = models.ManyToManyField(User, related_name='likes', blank=True, )
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts')
     created = models.DateTimeField(auto_now_add=True, null=True)
+    image = CloudinaryField('pictures')
 
     class Meta:
         ordering = ["-pk"]
