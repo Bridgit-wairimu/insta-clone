@@ -5,17 +5,37 @@
 {{block.super}}
 
   
-      {% for image in images %} 
-      <body> 
+      <body>
+
+        <div class="row">
+                <div class="col-md-4">
+                    <div class="card mt-4 mr-2 ml-2">
+                        <div class="card-title text-secondary mt-2 mr-2 ml-2 " s>Suggestions for you</div>
+                        {% for user in users %}
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-2 mr-3 mt-1 mb-2">
+                                    <img class="rounded-circle" src="{{ user.profile.profile_picture.url }}"
+                                         width="45px" height="45px">
+                                </div>
+                                <div class="col-md-6 mr-2 mt-2">
+                                <p> {{user.user}} <button class="btn btn-success" class="button"  style="color:white; background-color: blue;">Follow</button> </p>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+<hr>
+
+    {% for image in images %} 
     <div class="card-content">
     <div class="media">
-      <div class="media-left">
-                    <img src="{{image.user.profile_picture.url}}" class="rounded-circle border ml-3 mt-2  mr-3"
-                   alt="{{image.user.user.username}}" width="35" height="35">
-                </div> 
-            </div>
-                <br>
-                        <img src="{{image.image.url}}"class="card-img" width="200px" height="150px">
+      <div class="media-left">  
+                <img src="{{image.image.url}}"class="card-img" width="200px" height="150px">
                 
     <div class="media-right">
       <a href="{% url 'likepage' %}"><i class="material-icons has-text-danger">favorite</i></a>
