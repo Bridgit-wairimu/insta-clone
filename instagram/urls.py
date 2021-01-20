@@ -12,7 +12,7 @@ urlpatterns = [
     url(r'^comment/', views.comment, name='one_post'),
     url(r'^signup/', views.Signup, name='signup'),
     url(r'^like/', views.like, name='likepage'),
-    url(r'^search/', views.search_profile, name='search'),
+    url(r'^search/', views.search_profile, name='search_profile'),
 ]
 
 if settings.DEBUG:
