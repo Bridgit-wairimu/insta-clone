@@ -8,7 +8,6 @@ from django.urls import reverse
 
 
 # Create your views here.
-@login_required(login_url='/accounts/login/')
 def welcome(request):
     images = Post.objects.all()
     current_user = request.user
@@ -31,24 +30,6 @@ def welcome(request):
     }
     return render(request, 'welcome.html', params)
 
-@login_required(login_url='/accounts/login/')
-def Signup(request):
-	if request.method == 'POST':
-		form = SignupForm(request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			email = form.cleaned_data.get('email')
-			password = form.cleaned_data.get('password')
-			User.objects.create_user(username=username, email=email, password=password)
-			return redirect('welcome')
-	else:
-		form = SignupForm()
-	
-	context = {
-		'form':form,
-	}
-
-	return render(request, 'signup.html', context)
 
 
 @login_required(login_url='/accounts/login/')

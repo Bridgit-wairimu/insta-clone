@@ -1,6 +1,8 @@
 {%extends "registration/base.html"%}
 {% load bootstrap3 %}
+{% load static%}
 {% block content %}
+
 <div class="container">
   <div class="row">
     <!-- Empty div -->
@@ -24,17 +26,33 @@
               <input type="submit" class="btn btn-primary btn-sm" value="Login">
             </div>
 
-            <input type="hidden" name="next" value="{{next}}">
+            <input type="hidden" name="next" value="{% url 'welcome' %}">
 
           </form>
+          <p> Don't have an account? Create an account <a href="/accounts/register"> Create</a></p>
+        
+            <div class="container">
+                <p class="text-center mt-4">Get the app</p>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-5 mb-2">
+                      <img src="../static/css/images/insta2.png" alt="" width="100%" class="download">
+                    </div>
+                    <div class="col-md-5 mb-2">
+                        <img src="../static/css/images/insta1.png" alt="" width="100%" class="download">
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
 
         </div>
-
+      
       </div>
 
     </div>
-    <!-- empty div -->
-    <div class="col-md-4"></div>
   </div>
 </div>
 

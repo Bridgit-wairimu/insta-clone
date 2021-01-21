@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="">
+    <a class="navbar-item" href="{% url 'welcome' %}">
       <img src="../static/css/images/insta-logo.png" width="30" height="20">
     </a>
 
@@ -11,8 +11,9 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
-    
   <div id="navbarBasicExample" class="navbar-menu">
+      {% if user.is_authenticated %}
+
     <div class="navbar-start">
       <a class="navbar-item" href="{%url 'welcome'%}">
       <i class="material-icons">home</i>
@@ -40,16 +41,15 @@
             change password
           </a>
           
-          <a class="navbar-item" href="{% url 'signup' %}">
-            Sign Up
-          
-          <a class="navbar-item" href="{% url 'welcome' %}">
-            login
-          </a>
-             
           <a class="navbar-item" href="/logout">
             logout
           </a>
+          
+          {% else %}
+          <a class="navbar-item" href="/accounts/login">
+            login
+          </a>
+             
             </div>
             </div>
             
@@ -57,7 +57,8 @@
              <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search">
             <i class="spinner "></i>
           </form>
-          </a> 
+          </a>
+          {% endif%} 
             </div>
                 </div>
 </nav>
