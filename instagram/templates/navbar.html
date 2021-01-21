@@ -12,7 +12,6 @@
     </a>
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
-      {% if user.is_authenticated %}
 
     <div class="navbar-start">
       <a class="navbar-item" href="{%url 'welcome'%}">
@@ -45,7 +44,6 @@
             logout
           </a>
           
-          {% else %}
           <a class="navbar-item" href="/accounts/login">
             login
           </a>
@@ -58,7 +56,6 @@
             <i class="spinner "></i>
           </form>
           </a>
-          {% endif%} 
             </div>
                 </div>
 </nav>
