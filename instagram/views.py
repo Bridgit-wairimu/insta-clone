@@ -1,11 +1,11 @@
 from django.shortcuts  import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
-from .forms import NewPostForm,EditProfileForm,CommentForm,SignupForm
+from .forms import NewPostForm,EditProfileForm,CommentForm,SignupForm, InstaLetterForm
+
 from .models import Post,Profile,Likes,Comment
 from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.models import User
 from django.urls import reverse
-
 
 # Create your views here.
 def welcome(request):
@@ -29,7 +29,6 @@ def welcome(request):
 
     }
     return render(request, 'welcome.html', params)
-
 
 
 @login_required(login_url='/accounts/login/')
